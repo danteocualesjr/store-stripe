@@ -1,0 +1,131 @@
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number; // in cents
+  emoji: string;
+  category: string;
+  badge?: string;
+  neonColor: 'pink' | 'cyan' | 'yellow' | 'purple' | 'green';
+  stripeProductId?: string;
+  stripePriceId?: string;
+  paymentLink?: string;
+}
+
+export const products: Product[] = [
+  {
+    id: 'rubiks-cube',
+    name: "Rubik's Cube",
+    description: 'The classic 3×3 color puzzle that defined a generation. Can you solve it?',
+    price: 1499,
+    emoji: '🎲',
+    category: 'Puzzles',
+    badge: 'CLASSIC',
+    neonColor: 'cyan',
+    stripeProductId: 'prod_TzvhFMhp0PKBuE',
+    stripePriceId: 'price_1T1w9aCIxTxdP6phuRjXvHsv',
+    paymentLink: 'https://buy.stripe.com/28EeVcePI4At2M39IR9ws05',
+  },
+  {
+    id: 'he-man',
+    name: 'He-Man Action Figure',
+    description: 'By the power of Grayskull! The most powerful man in the universe is here.',
+    price: 2499,
+    emoji: '⚔️',
+    category: 'Action Figures',
+    badge: 'HOT!',
+    neonColor: 'yellow',
+    stripeProductId: 'prod_Tzvh1r2prFU4mI',
+    stripePriceId: 'price_1T1wABCIxTxdP6phW8iDZkZ3',
+    paymentLink: 'https://buy.stripe.com/9B66oG7ngeb30DV2gp9ws06',
+  },
+  {
+    id: 'transformers',
+    name: 'Optimus Prime',
+    description: 'Robots in disguise! Transforms from mighty truck to heroic Autobot leader.',
+    price: 3499,
+    emoji: '🤖',
+    category: 'Transformers',
+    badge: 'SOLD OUT',
+    neonColor: 'pink',
+    stripeProductId: 'prod_TzvhqJPyorEHGz',
+    stripePriceId: 'price_1T1wARCIxTxdP6phnc8WTftL',
+    paymentLink: 'https://buy.stripe.com/00wbJ022W7MF86n7AJ9ws07',
+  },
+  {
+    id: 'pac-man',
+    name: 'Pac-Man Tabletop',
+    description: 'Waka waka waka! Bring the arcade home with this tabletop edition.',
+    price: 14999,
+    emoji: '👾',
+    category: 'Arcade',
+    badge: 'LIMITED',
+    neonColor: 'yellow',
+    stripeProductId: 'prod_TzvhZ16gfKgVnz',
+    stripePriceId: 'price_1T1wAXCIxTxdP6phV5EAepSK',
+    paymentLink: 'https://buy.stripe.com/aFafZgbDw1ohbiz1cl9ws08',
+  },
+  {
+    id: 'my-little-pony',
+    name: 'My Little Pony Set',
+    description: 'Friendship is magic — even in 1984. Collect all the ponies!',
+    price: 1999,
+    emoji: '🦄',
+    category: 'Dolls',
+    neonColor: 'purple',
+    stripeProductId: 'prod_Tzw0QuQliZZIOz',
+    stripePriceId: 'price_1T1wAcCIxTxdP6phPwrkArvx',
+    paymentLink: 'https://buy.stripe.com/6oUbJ0gXQff7cmDf3b9ws09',
+  },
+  {
+    id: 'speak-and-spell',
+    name: 'Speak & Spell',
+    description: 'The electronic learning toy that helped E.T. phone home. Learn while you play!',
+    price: 2999,
+    emoji: '📟',
+    category: 'Educational',
+    badge: 'AS SEEN ON TV',
+    neonColor: 'green',
+    stripeProductId: 'prod_Tzw1AFVnz9bDIX',
+    stripePriceId: 'price_1T1wAgCIxTxdP6phmxb0QuSR',
+    paymentLink: 'https://buy.stripe.com/14AbJ0bDwgjbbiz6wF9ws0a',
+  },
+  {
+    id: 'atari-2600',
+    name: 'Atari 2600 Console',
+    description: 'Have you played Atari today? The legendary home console with wood-grain paneling.',
+    price: 8999,
+    emoji: '🕹️',
+    category: 'Consoles',
+    badge: 'ICONIC',
+    neonColor: 'cyan',
+    stripeProductId: 'prod_Tzw1KA1WqKkKZl',
+    stripePriceId: 'price_1T1wAlCIxTxdP6phIMT0OLcD',
+    paymentLink: 'https://buy.stripe.com/fZu6oG9vo2sl4Ubg7f9ws0b',
+  },
+  {
+    id: 'cabbage-patch',
+    name: 'Cabbage Patch Doll',
+    description: 'The doll with adoption papers! Every one is unique. Adopt yours today.',
+    price: 3999,
+    emoji: '🧸',
+    category: 'Dolls',
+    badge: 'RARE',
+    neonColor: 'pink',
+    stripeProductId: 'prod_Tzw1AawskALRvn',
+    stripePriceId: 'price_1T1wArCIxTxdP6ph8Tkk1EFC',
+    paymentLink: 'https://buy.stripe.com/6oU3cu4b4d6ZdqH1cl9ws0c',
+  },
+  {
+    id: 'gi-joe',
+    name: 'G.I. Joe: Snake Eyes',
+    description: 'Yo Joe! The silent ninja commando comes with accessories galore.',
+    price: 1999,
+    emoji: '🥷',
+    category: 'Action Figures',
+    neonColor: 'green',
+    stripeProductId: 'prod_Tzw1E2TAOMIG6k',
+    stripePriceId: 'price_1T1wBKCIxTxdP6ph7tXi7jj7',
+    paymentLink: 'https://buy.stripe.com/00wcN49vo8QJdqH4ox9ws0d',
+  },
+];

@@ -1,26 +1,208 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --neon-pink: #ff2d78;
+  --neon-cyan: #00f5ff;
+  --neon-yellow: #ffe600;
+  --neon-purple: #bf00ff;
+  --neon-green: #39ff14;
+  --dark-bg: #0a0a1a;
+  --grid-color: rgba(0, 245, 255, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--dark-bg);
+  color: #fff;
+  font-family: var(--font-vt), 'VT323', monospace;
+  overflow-x: hidden;
+}
+
+/* Retro grid background */
+.retro-grid {
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* CRT scanline overlay */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.07) 2px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Neon text glow */
+.neon-pink {
+  color: var(--neon-pink);
+  text-shadow:
+    0 0 7px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    0 0 45px var(--neon-pink);
+}
+
+.neon-cyan {
+  color: var(--neon-cyan);
+  text-shadow:
+    0 0 7px var(--neon-cyan),
+    0 0 20px var(--neon-cyan),
+    0 0 45px var(--neon-cyan);
+}
+
+.neon-yellow {
+  color: var(--neon-yellow);
+  text-shadow:
+    0 0 7px var(--neon-yellow),
+    0 0 20px var(--neon-yellow),
+    0 0 45px var(--neon-yellow);
+}
+
+.neon-purple {
+  color: var(--neon-purple);
+  text-shadow:
+    0 0 7px var(--neon-purple),
+    0 0 20px var(--neon-purple),
+    0 0 45px var(--neon-purple);
+}
+
+.neon-green {
+  color: var(--neon-green);
+  text-shadow:
+    0 0 7px var(--neon-green),
+    0 0 20px var(--neon-green),
+    0 0 45px var(--neon-green);
+}
+
+/* Neon border glow */
+.neon-border-pink {
+  border: 2px solid var(--neon-pink);
+  box-shadow:
+    0 0 8px var(--neon-pink),
+    inset 0 0 8px rgba(255, 45, 120, 0.1);
+}
+
+.neon-border-cyan {
+  border: 2px solid var(--neon-cyan);
+  box-shadow:
+    0 0 8px var(--neon-cyan),
+    inset 0 0 8px rgba(0, 245, 255, 0.1);
+}
+
+.neon-border-yellow {
+  border: 2px solid var(--neon-yellow);
+  box-shadow:
+    0 0 8px var(--neon-yellow),
+    inset 0 0 8px rgba(255, 230, 0, 0.1);
+}
+
+.neon-border-purple {
+  border: 2px solid var(--neon-purple);
+  box-shadow:
+    0 0 8px var(--neon-purple),
+    inset 0 0 8px rgba(191, 0, 255, 0.1);
+}
+
+.neon-border-green {
+  border: 2px solid var(--neon-green);
+  box-shadow:
+    0 0 8px var(--neon-green),
+    inset 0 0 8px rgba(57, 255, 20, 0.1);
+}
+
+/* Product card hover */
+.product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* Buy button glow pulse */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); }
+  50% { box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), 0 0 60px var(--neon-pink); }
+}
+
+.btn-buy {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* Marquee scroll */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee 18s linear infinite;
+  width: max-content;
+}
+
+/* Flicker animation for logo */
+@keyframes flicker {
+  0%, 94%, 100% { opacity: 1; }
+  95% { opacity: 0.4; }
+  97% { opacity: 0.8; }
+}
+
+.flicker {
+  animation: flicker 6s infinite;
+}
+
+/* VHS badge */
+.vhs-badge {
+  background: linear-gradient(135deg, #1a0033, #330066);
+  border: 1px solid var(--neon-purple);
+  box-shadow: 0 0 6px var(--neon-purple);
+  font-family: var(--font-pixel), 'Press Start 2P', monospace;
+  font-size: 9px;
+}
+
+/* Sun rays (synthwave sun) */
+.synthwave-sun {
+  background: linear-gradient(180deg, #ff6ec7 0%, #ff2d78 40%, #ffe600 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Stripe badge */
+.stripe-badge {
+  background: rgba(99, 91, 255, 0.15);
+  border: 1px solid rgba(99, 91, 255, 0.5);
+  box-shadow: 0 0 8px rgba(99, 91, 255, 0.3);
+}
+
+/* Font utility */
+.font-pixel {
+  font-family: var(--font-pixel), 'Press Start 2P', monospace;
+}
+
+.font-vt {
+  font-family: var(--font-vt), 'VT323', monospace;
+}
+
+/* Retro divider */
+.retro-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-pink), var(--neon-cyan), transparent);
+  box-shadow: 0 0 8px var(--neon-cyan);
 }
