@@ -246,3 +246,55 @@ body {
   border-radius: 4px;
   padding: 2px 8px;
 }
+
+/* ─── Card entrance animation ────────────────────────────────────── */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.product-card { animation: cardIn 0.55s cubic-bezier(.22,.61,.36,1) both; }
+
+.product-card:nth-child(1) { animation-delay: 0.04s; }
+.product-card:nth-child(2) { animation-delay: 0.10s; }
+.product-card:nth-child(3) { animation-delay: 0.16s; }
+.product-card:nth-child(4) { animation-delay: 0.22s; }
+.product-card:nth-child(5) { animation-delay: 0.28s; }
+.product-card:nth-child(6) { animation-delay: 0.34s; }
+.product-card:nth-child(7) { animation-delay: 0.40s; }
+.product-card:nth-child(8) { animation-delay: 0.46s; }
+.product-card:nth-child(9) { animation-delay: 0.52s; }
+
+/* ─── Buy button shimmer ─────────────────────────────────────────── */
+.btn-buy {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-buy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.09), transparent);
+  animation: shimmer 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%   { left: -100%; }
+  55%  { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* ─── Soft vignette on page edges ───────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.45) 100%);
+  pointer-events: none;
+  z-index: 9998;
+}

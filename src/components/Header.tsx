@@ -129,57 +129,95 @@ export default function Header() {
       </div>
 
       {/* ── Marquee ticker ──────────────────────────────────── */}
-      <div className="overflow-hidden bg-black/70 border-y border-pink-600/30 py-2">
+      <div
+        className="overflow-hidden py-2.5"
+        style={{
+          background: 'linear-gradient(90deg, rgba(255,45,120,0.15), rgba(0,0,0,0.8), rgba(255,45,120,0.15))',
+          borderTop: '1px solid rgba(255,45,120,0.25)',
+          borderBottom: '1px solid rgba(255,45,120,0.25)',
+          boxShadow: '0 0 20px rgba(255,45,120,0.1)',
+        }}
+      >
         <div className="marquee-track font-pixel text-[8px] text-pink-400 whitespace-nowrap">
           {Array.from({ length: 4 }).map((_, i) => (
-            <span key={i} className="mx-8 opacity-90">
-              ★ MEGA SALE ★ &nbsp; FREE SHIPPING OVER $50 &nbsp; ★ TOTALLY RADICAL TOYS ★ &nbsp;
-              NEW ARRIVALS EVERY FRIDAY &nbsp; ★ GNARLY DEALS ★ &nbsp; AS SEEN ON TV &nbsp;
+            <span key={i} className="mx-8">
+              <span className="neon-pink opacity-70">★</span>
+              {' '} MEGA SALE {' '}
+              <span className="text-pink-600 mx-3">·</span>
+              FREE SHIPPING OVER $50 {' '}
+              <span className="text-pink-600 mx-3">·</span>
+              <span className="neon-pink opacity-70">★</span>
+              {' '} TOTALLY RADICAL TOYS {' '}
+              <span className="text-pink-600 mx-3">·</span>
+              NEW ARRIVALS EVERY FRIDAY {' '}
+              <span className="text-pink-600 mx-3">·</span>
+              <span className="neon-yellow opacity-80">★</span>
+              {' '} AS SEEN ON TV {' '}
             </span>
           ))}
         </div>
       </div>
 
       {/* ── Hero text ───────────────────────────────────────── */}
-      <div className="relative z-10 text-center py-10 px-4">
-        <div className="flicker inline-block">
-          <p className="font-pixel text-[9px] sm:text-[10px] text-pink-400 tracking-[0.5em] mb-3 opacity-80">
-            ▶ WELCOME TO
-          </p>
+      <div className="relative z-10 text-center pt-12 pb-10 px-4">
+
+        {/* "WELCOME TO" eyebrow */}
+        <p className="font-pixel text-[8px] tracking-[0.6em] text-pink-500/70 mb-4 uppercase">
+          ▶ &nbsp; Welcome to &nbsp; ◀
+        </p>
+
+        {/* Main logo */}
+        <div className="flicker inline-block mb-2">
           <h1
-            className="font-pixel synthwave-sun leading-tight tracking-tight"
-            style={{ fontSize: 'clamp(2rem, 7vw, 4.5rem)' }}
+            className="font-pixel synthwave-sun leading-none"
+            style={{ fontSize: 'clamp(2.2rem, 8vw, 5rem)', letterSpacing: '-0.02em' }}
           >
             PIXEL PALACE
           </h1>
-          <p
-            className="font-pixel neon-cyan tracking-[0.4em] mt-2"
-            style={{ fontSize: 'clamp(0.55rem, 1.5vw, 0.85rem)' }}
-          >
-            TOY EMPORIUM
-          </p>
         </div>
 
-        <p className="font-vt text-2xl sm:text-3xl text-gray-300 mt-5 tracking-wider">
-          The gnarliest toys this side of the galaxy — since{' '}
-          <span className="neon-yellow">1982</span>
+        {/* Sub-title */}
+        <div className="flex items-center justify-center gap-3 mt-3 mb-1">
+          <div className="h-px w-12 bg-gradient-to-r from-transparent to-cyan-500/50" />
+          <p className="font-pixel neon-cyan" style={{ fontSize: 'clamp(0.5rem, 1.4vw, 0.78rem)', letterSpacing: '0.45em' }}>
+            TOY EMPORIUM
+          </p>
+          <div className="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500/50" />
+        </div>
+
+        {/* Tagline */}
+        <p className="font-vt text-xl sm:text-2xl text-gray-400 mt-5 tracking-widest max-w-xl mx-auto leading-relaxed">
+          The gnarliest toys this side of the galaxy{' '}
+          <span className="text-gray-600">—</span>{' '}
+          since <span className="neon-yellow">1982</span>
         </p>
 
-        {/* CTA */}
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+        {/* CTAs */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
             href="#shop"
-            className="btn-buy font-pixel text-[9px] px-6 py-3 rounded bg-transparent text-white neon-border-pink hover:bg-white/5 transition-colors"
+            className="btn-buy font-pixel text-[9px] px-8 py-3.5 rounded-xl bg-transparent text-white neon-border-pink hover:bg-pink-950/30 transition-all duration-200"
           >
             SHOP NOW →
           </a>
-          <span className="font-pixel text-[7px] text-gray-500 px-5 py-3 border border-gray-800 rounded">
+          <div
+            className="font-pixel text-[7px] text-gray-500 px-5 py-3.5 rounded-xl flex items-center gap-2"
+            style={{ border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.02)' }}
+          >
+            <span className="text-yellow-500">★</span>
             9 RADICAL PRODUCTS
-          </span>
+            <span className="text-yellow-500">★</span>
+          </div>
         </div>
       </div>
 
-      <div className="retro-divider mx-4" />
+      {/* ── Bottom fade into section ─────────────────────────── */}
+      <div
+        className="h-16"
+        style={{
+          background: 'linear-gradient(180deg, transparent, rgba(6,6,26,0.8))',
+        }}
+      />
     </header>
   );
 }
