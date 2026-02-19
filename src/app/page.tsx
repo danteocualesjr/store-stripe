@@ -1,12 +1,11 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ProductCard from '@/components/ProductCard';
 import FeaturedCard from '@/components/FeaturedCard';
+import ProductsSection from '@/components/ProductsSection';
 import { products } from '@/data/products';
 
 export default function Home() {
   const [featured, ...rest] = products;
-  const categories = Array.from(new Set(rest.map((p) => p.category)));
 
   return (
     <main className="retro-grid min-h-screen relative overflow-x-hidden">
@@ -35,41 +34,8 @@ export default function Home() {
           <FeaturedCard product={featured} />
         </div>
 
-        {/* ── Section heading ──────────────────────────────────── */}
-        <div className="mt-16 mb-8 text-center">
-          <div className="inline-flex flex-col items-center gap-2">
-            <div className="flex items-center gap-4">
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-cyan-500/50" />
-              <h2 className="font-pixel text-[11px] neon-cyan tracking-widest">ALL PRODUCTS</h2>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500/50" />
-            </div>
-            <p className="font-vt text-xl text-gray-500 tracking-wider">
-              {rest.length} more radical toys in stock
-            </p>
-          </div>
-        </div>
-
-        {/* ── Category filters ─────────────────────────────────── */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          <button className="font-pixel text-[7px] px-4 py-2 rounded-full border border-pink-600/60 text-pink-400 bg-pink-950/30 hover:bg-pink-900/40 transition-all duration-200 shadow-[0_0_8px_rgba(255,45,120,0.2)]">
-            ALL
-          </button>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className="font-pixel text-[7px] px-4 py-2 rounded-full border border-gray-700/40 text-gray-600 hover:border-cyan-500/60 hover:text-cyan-400 hover:bg-cyan-950/20 transition-all duration-200"
-            >
-              {cat.toUpperCase()}
-            </button>
-          ))}
-        </div>
-
-        {/* ── Product grid ─────────────────────────────────────── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {rest.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {/* ── Filterable product grid ───────────────────────────── */}
+        <ProductsSection products={rest} />
 
         {/* ── Stats ────────────────────────────────────────────── */}
         <div className="mt-20">
