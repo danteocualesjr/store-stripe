@@ -9,12 +9,13 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3"
       style={{
+        
         background: 'rgba(6,6,26,0.75)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
         borderBottom: '1px solid rgba(0,245,255,0.12)',
         boxShadow: '0 4px 32px rgba(0,0,0,0.4)',
-        
+
       }}
     >
       {/* Logo */}
