@@ -14,6 +14,7 @@ export default function Navbar() {
         WebkitBackdropFilter: 'blur(20px)',
         borderBottom: '1px solid rgba(0,245,255,0.12)',
         boxShadow: '0 4px 32px rgba(0,0,0,0.4)',
+        
       }}
     >
       {/* Logo */}
