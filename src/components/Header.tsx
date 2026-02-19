@@ -38,7 +38,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="relative overflow-hidden">
+    <header className="relative overflow-hidden pt-14">
       {/* ── Starfield ───────────────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none">
         {STARS.map((s, i) => (

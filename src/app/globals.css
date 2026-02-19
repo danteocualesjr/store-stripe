@@ -247,6 +247,11 @@ body {
   padding: 2px 8px;
 }
 
+/* ─── Backdrop blur fallback ─────────────────────────────────────── */
+@supports not (backdrop-filter: blur(1px)) {
+  .product-card { background: rgba(10,10,30,0.97) !important; }
+}
+
 /* ─── Card entrance animation ────────────────────────────────────── */
 @keyframes cardIn {
   from { opacity: 0; transform: translateY(28px) scale(0.96); }
