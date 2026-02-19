@@ -1,6 +1,7 @@
 'use client';
 
 import { Product } from '@/data/products';
+import { useCart } from '@/context/CartContext';
 
 const colorHex: Record<Product['neonColor'], string> = {
   pink:   '#ff2d78',
@@ -15,6 +16,8 @@ interface Props { product: Product }
 export default function ProductCard({ product }: Props) {
   const hex = colorHex[product.neonColor];
   const isSoldOut = product.badge === 'SOLD OUT';
+  const { addToCart, justAdded } = useCart();
+  const isJustAdded = justAdded === product.id;
 
   return (
     <div
@@ -150,35 +153,43 @@ export default function ProductCard({ product }: Props) {
           <span className="font-pixel text-[6px] text-gray-700 tracking-widest">USD</span>
         </div>
 
-        {/* CTA */}
-        {product.paymentLink && !isSoldOut ? (
-          <a
-            href={product.paymentLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-buy w-full text-center font-pixel py-3 rounded-xl text-white transition-all duration-200 hover:scale-[1.02] active:scale-[0.97]"
-            style={{
-              fontSize: 8,
-              border: `1px solid ${hex}55`,
-              background: `linear-gradient(135deg, ${hex}1a 0%, ${hex}08 100%)`,
-              boxShadow: `0 0 16px ${hex}20`,
-            }}
-          >
-            BUY NOW →
-          </a>
-        ) : (
-          <button
-            disabled
-            className="w-full font-pixel py-3 rounded-xl cursor-not-allowed"
-            style={{
-              fontSize: 8,
-              border: '1px solid rgba(255,255,255,0.06)',
-              background: 'rgba(0,0,0,0.3)',
-              color: 'rgba(255,255,255,0.2)',
-            }}
-          >
-            {isSoldOut ? '✕  SOLD OUT' : 'COMING SOON'}
+        {/* CTAs */}
+        {isSoldOut ? (
+          <button disabled className="w-full font-pixel py-3 rounded-xl cursor-not-allowed" style={{ fontSize: 8, border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(0,0,0,0.3)', color: 'rgba(255,255,255,0.18)' }}>
+            ✕  SOLD OUT
           </button>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {/* Add to Cart */}
+            <button
+              onClick={() => addToCart(product)}
+              className="btn-buy w-full font-pixel py-3 rounded-xl text-white transition-all duration-200 hover:scale-[1.02] active:scale-[0.97]"
+              style={{
+                fontSize: 8,
+                border: `1px solid ${isJustAdded ? '#39ff14' : hex + '55'}`,
+                background: isJustAdded
+                  ? 'linear-gradient(135deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06))'
+                  : `linear-gradient(135deg, ${hex}1a 0%, ${hex}08 100%)`,
+                boxShadow: isJustAdded ? '0 0 16px rgba(57,255,20,0.3)' : `0 0 16px ${hex}20`,
+                color: isJustAdded ? '#39ff14' : 'white',
+                transition: 'all 0.25s',
+              }}
+            >
+              {isJustAdded ? '✓ ADDED!' : '🛒 ADD TO CART'}
+            </button>
+            {/* Quick buy */}
+            {product.paymentLink && (
+              <a
+                href={product.paymentLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-center font-pixel py-2 rounded-xl transition-all duration-200 hover:opacity-80"
+                style={{ fontSize: 7, border: '1px solid rgba(255,255,255,0.07)', background: 'transparent', color: 'rgba(255,255,255,0.25)' }}
+              >
+                BUY DIRECTLY →
+              </a>
+            )}
+          </div>
         )}
       </div>
     </div>

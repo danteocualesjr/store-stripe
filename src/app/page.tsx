@@ -1,5 +1,4 @@
 import Header from '@/components/Header';
-import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import FeaturedCard from '@/components/FeaturedCard';
@@ -11,9 +10,6 @@ export default function Home() {
 
   return (
     <main className="retro-grid min-h-screen relative overflow-x-hidden">
-
-      {/* ── Sticky Navbar ───────────────────────────────────────── */}
-      <Navbar />
 
       {/* ── Atmospheric fog blobs ───────────────────────────────── */}
       <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>

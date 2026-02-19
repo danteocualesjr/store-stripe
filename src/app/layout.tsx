@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Press_Start_2P, VT323 } from 'next/font/google';
+import AppShell from '@/components/AppShell';
 import './globals.css';
 
 const pressStart2P = Press_Start_2P({
@@ -29,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${pressStart2P.variable} ${vt323.variable}`}>
-      <body className="scanlines">{children}</body>
+      <body className="scanlines">
+        <AppShell>{children}</AppShell>
+      </body>
     </html>
   );
 }

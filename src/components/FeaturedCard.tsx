@@ -1,6 +1,7 @@
 'use client';
 
 import { Product } from '@/data/products';
+import { useCart } from '@/context/CartContext';
 
 interface Props { product: Product }
 
@@ -14,6 +15,8 @@ const colorHex: Record<Product['neonColor'], string> = {
 
 export default function FeaturedCard({ product }: Props) {
   const hex = colorHex[product.neonColor];
+  const { addToCart, justAdded } = useCart();
+  const isJustAdded = justAdded === product.id;
 
   return (
     <div
@@ -154,28 +157,34 @@ export default function FeaturedCard({ product }: Props) {
               </p>
             </div>
 
-            {product.paymentLink ? (
-              <a
-                href={product.paymentLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-buy font-pixel text-[10px] px-8 py-4 rounded-xl text-white transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+            <div className="flex flex-col sm:flex-row gap-2">
+              <button
+                onClick={() => addToCart(product)}
+                className="btn-buy font-pixel text-[10px] px-8 py-4 rounded-xl text-white transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 style={{
-                  border: `1.5px solid ${hex}`,
-                  background: `linear-gradient(135deg, ${hex}22, ${hex}0a)`,
-                  boxShadow: `0 0 20px ${hex}44`,
+                  border: `1.5px solid ${isJustAdded ? '#39ff14' : hex}`,
+                  background: isJustAdded
+                    ? 'linear-gradient(135deg, rgba(57,255,20,0.2), rgba(57,255,20,0.06))'
+                    : `linear-gradient(135deg, ${hex}22, ${hex}0a)`,
+                  boxShadow: isJustAdded ? '0 0 20px rgba(57,255,20,0.4)' : `0 0 20px ${hex}44`,
+                  color: isJustAdded ? '#39ff14' : 'white',
+                  transition: 'all 0.25s',
                 }}
               >
-                BUY NOW — ${(product.price / 100).toFixed(2)} →
-              </a>
-            ) : (
-              <button
-                disabled
-                className="font-pixel text-[10px] px-8 py-4 rounded-xl border border-gray-700 text-gray-600 cursor-not-allowed"
-              >
-                SOLD OUT
+                {isJustAdded ? '✓ ADDED TO CART!' : `🛒 ADD TO CART — $${(product.price / 100).toFixed(2)}`}
               </button>
-            )}
+              {product.paymentLink && (
+                <a
+                  href={product.paymentLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-pixel text-[8px] px-5 py-4 rounded-xl text-white/30 hover:text-white/60 transition-colors"
+                  style={{ border: '1px solid rgba(255,255,255,0.07)' }}
+                >
+                  BUY DIRECTLY →
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
