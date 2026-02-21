@@ -254,6 +254,25 @@ body {
   100% { transform: scale(1);   opacity: 1; }
 }
 
+/* ─── Toast notifications ────────────────────────────────────────── */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(110%) scale(0.92); }
+  to   { opacity: 1; transform: translateX(0)    scale(1); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0)    scale(1);    max-height: 120px; margin-bottom: 10px; }
+  to   { opacity: 0; transform: translateX(110%) scale(0.92); max-height: 0;     margin-bottom: 0; }
+}
+
+.toast-enter { animation: toastIn  0.38s cubic-bezier(.22,.61,.36,1) both; }
+.toast-exit  { animation: toastOut 0.32s cubic-bezier(.55,0,1,.45)   both; }
+
+@keyframes toastProgress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
 /* ─── Backdrop blur fallback ─────────────────────────────────────── */
 @supports not (backdrop-filter: blur(1px)) {
   .product-card { background: rgba(10,10,30,0.97) !important; }
